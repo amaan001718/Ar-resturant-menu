@@ -871,31 +871,107 @@ function closeCart(){
 // WHATSAPP
 
 async function orderWhatsApp(){
-        const orderData = {
-  customer_name: document.getElementById("customerName").value.trim(),
-  table_number: document.getElementById("tableNumber").value.trim(),
-  items: cart,
-  total: cart.reduce(
-    (sum, item) => sum + (item.price * item.quantity),
-    0
-  ),
-  instructions: document.getElementById("instructions").value.trim(),
-  status: "received"
-};
+        async function orderWhatsApp(){
 
-console.log("Order ready:", orderData);
-        const { data, error } = await supabaseClient
-  .from("Orders")
-  .insert([orderData])
-  .select();
+if(cart.length === 0){
 
-if (error) {
-  console.error("Order save error:", error);
-  alert("Order save nahi hua. Please try again.");
-  return;
+alert("Please add food to cart first.");
+
+return;
+
 }
 
-console.log("Order saved:", data);
+const name =
+document.getElementById("customerName")
+.value.trim();
+
+const tableValue =
+document.getElementById("tableNumber")
+.value.trim();
+
+const instructions =
+document.getElementById("instructions")
+.value.trim();
+
+
+if(!name){
+
+alert("Please enter your name.");
+
+return;
+
+}
+
+
+if(!tableValue){
+
+alert("Please enter your table number.");
+
+return;
+
+}
+
+
+const orderData = {
+
+customer_name: name,
+
+table_number: tableValue,
+
+items: cart,
+
+total: cart.reduce(
+(sum,item) =>
+sum + (item.price * item.quantity),
+0
+),
+
+instructions: instructions,
+
+status: "received"
+
+};
+
+
+console.log("Sending order:",orderData);
+
+
+const { data,error } =
+await supabaseClient
+
+.from("Orders")
+
+.insert([orderData])
+
+.select();
+
+
+if(error){
+
+console.error(
+"Supabase error:",
+error
+);
+
+alert(
+"Database error: " +
+error.message
+);
+
+return;
+
+}
+
+
+console.log(
+"Order saved:",
+data
+);
+
+
+alert(
+"✅ Order received successfully!"
+);
 
 if(cart.length === 0){
 
