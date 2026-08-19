@@ -2,13 +2,10 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Amaan Restaurant AR Menu</title>
+<title>SIGNATURE - AR Menu</title>
 
 <script type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
@@ -16,56 +13,133 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 <style>
 
-body{
-margin:0;
-padding:20px;
-font-family:Arial,sans-serif;
-background:#f5f1ea;
+*{
+box-sizing:border-box;
 }
 
-.restaurant{
-max-width:500px;
-margin:auto;
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f6f3ee;
+color:#222;
+}
+
+.header{
+background:#111;
+color:white;
+padding:35px 20px;
 text-align:center;
 }
 
-h1{
-margin-bottom:5px;
+.header h1{
+margin:0;
+font-size:36px;
+letter-spacing:5px;
 }
 
-.subtitle{
-color:#777;
+.header p{
+margin:10px 0 0;
+color:#ccc;
+font-size:14px;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+padding:20px;
+}
+
+.search{
+width:100%;
+padding:15px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:16px;
+margin-bottom:18px;
+outline:none;
+}
+
+.categories{
+display:flex;
+gap:8px;
+overflow-x:auto;
 margin-bottom:25px;
+}
+
+.categories button{
+white-space:nowrap;
+border:0;
+padding:10px 16px;
+border-radius:20px;
+background:#ddd;
+font-size:14px;
+}
+
+.categories button.active{
+background:#111;
+color:white;
 }
 
 .food{
 background:white;
+border-radius:20px;
 margin-bottom:25px;
-padding:15px;
-border-radius:18px;
-box-shadow:0 4px 12px rgba(0,0,0,.1);
+overflow:hidden;
+box-shadow:0 5px 18px rgba(0,0,0,.08);
 }
 
-.food img{
+.food-image{
+position:relative;
+}
+
+.food-image img{
 width:100%;
-height:220px;
+height:230px;
 object-fit:cover;
-border-radius:12px;
+display:block;
 }
 
-.food h2{
-margin-bottom:5px;
+.badge{
+position:absolute;
+top:12px;
+left:12px;
+background:#111;
+color:white;
+padding:7px 11px;
+border-radius:20px;
+font-size:12px;
 }
 
-.food p{
+.food-content{
+padding:18px;
+}
+
+.food-title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.food-title h2{
+margin:0;
+font-size:22px;
+}
+
+.price{
+font-size:20px;
+font-weight:bold;
+}
+
+.description{
 color:#777;
+margin:8px 0 15px;
 }
 
 model-viewer{
 width:100%;
 height:300px;
-background:#eee;
-border-radius:12px;
+background:#f3f3f3;
+border-radius:15px;
 }
 
 .ar-button{
@@ -74,7 +148,15 @@ color:white;
 border:0;
 border-radius:10px;
 padding:13px 18px;
-font-size:16px;
+font-size:15px;
+font-weight:bold;
+}
+
+.footer{
+text-align:center;
+padding:30px 10px;
+color:#777;
+font-size:13px;
 }
 
 </style>
@@ -83,28 +165,81 @@ font-size:16px;
 
 <body>
 
-<div class="restaurant">
 
-<h1>🍴 Amaan Restaurant</h1>
+<header class="header">
 
-<p class="subtitle">
-Welcome to our AR Menu
-</p>
+<h1>SIGNATURE</h1>
+
+<p>EXPLORE • VIEW • EXPERIENCE</p>
+
+</header>
+
+
+<main class="container">
+
+
+<input
+class="search"
+id="search"
+type="text"
+placeholder="🔍 Search food..."
+>
+
+
+<div class="categories">
+
+<button class="active" onclick="filterFood('all',this)">
+All
+</button>
+
+<button onclick="filterFood('starter',this)">
+Starters
+</button>
+
+<button onclick="filterFood('main',this)">
+Main Course
+</button>
+
+<button onclick="filterFood('drinks',this)">
+Drinks
+</button>
+
+</div>
 
 
 <!-- BURGER -->
 
-<div class="food">
+<div class="food" data-category="main" data-name="burger">
+
+<div class="food-image">
 
 <img
 src="https://i.ibb.co/213NpYQj/360-F-274990113-ff-VRByg-Lk-LCZAATF9l-Wymz-E6b-It-MVu-H1.jpg"
-alt="Burger">
+alt="Burger"
+>
+
+<span class="badge">
+⭐ BEST SELLER
+</span>
+
+</div>
+
+<div class="food-content">
+
+<div class="food-title">
 
 <h2>🍔 Burger</h2>
 
-<p>Delicious crispy burger</p>
+<span class="price">
+₹199
+</span>
 
-<h3>₹199</h3>
+</div>
+
+<p class="description">
+Delicious crispy burger
+</p>
+
 
 <model-viewer
 
@@ -131,20 +266,42 @@ class="ar-button">
 
 </div>
 
+</div>
+
 
 <!-- PIZZA -->
 
-<div class="food">
+<div class="food" data-category="main" data-name="pizza">
+
+<div class="food-image">
 
 <img
 src="https://i.postimg.cc/TP7FQMfh/360-F-988111369-Px-Mp15v-F2BC4wh-Qx9K5i-Zf-Afof-CABg-AR.jpg"
-alt="Pizza">
+alt="Pizza"
+>
+
+<span class="badge">
+🔥 POPULAR
+</span>
+
+</div>
+
+<div class="food-content">
+
+<div class="food-title">
 
 <h2>🍕 Pizza</h2>
 
-<p>Fresh cheesy pizza</p>
+<span class="price">
+₹249
+</span>
 
-<h3>₹249</h3>
+</div>
+
+<p class="description">
+Fresh cheesy pizza
+</p>
+
 
 <model-viewer
 
@@ -171,20 +328,42 @@ class="ar-button">
 
 </div>
 
+</div>
+
 
 <!-- CHICKEN -->
 
-<div class="food">
+<div class="food" data-category="starter" data-name="chicken lollipop">
+
+<div class="food-image">
 
 <img
 src="https://i.postimg.cc/QdMqmBtz/high-angle-shot-delicious-hot-spicy-dish-called-drums-heaven-table-181624-50861.jpg"
-alt="Chicken Lollipop">
+alt="Chicken Lollipop"
+>
+
+<span class="badge">
+🌶️ SPICY
+</span>
+
+</div>
+
+<div class="food-content">
+
+<div class="food-title">
 
 <h2>🍗 Chicken Lollipop</h2>
 
-<p>Juicy and delicious</p>
+<span class="price">
+₹299
+</span>
 
-<h3>₹299</h3>
+</div>
+
+<p class="description">
+Juicy and delicious chicken lollipop
+</p>
+
 
 <model-viewer
 
@@ -212,6 +391,78 @@ class="ar-button">
 </div>
 
 </div>
+
+
+</main>
+
+
+<footer class="footer">
+
+SIGNATURE © 2026<br>
+AR MENU
+
+</footer>
+
+
+<script>
+
+const search = document.getElementById("search");
+
+search.addEventListener("input", function(){
+
+const value = this.value.toLowerCase();
+
+document.querySelectorAll(".food").forEach(function(food){
+
+const name = food.dataset.name;
+
+if(name.includes(value)){
+
+food.style.display = "block";
+
+}else{
+
+food.style.display = "none";
+
+}
+
+});
+
+});
+
+
+function filterFood(category,button){
+
+document.querySelectorAll(".categories button")
+.forEach(function(btn){
+
+btn.classList.remove("active");
+
+});
+
+button.classList.add("active");
+
+
+document.querySelectorAll(".food")
+.forEach(function(food){
+
+if(category === "all" ||
+food.dataset.category === category){
+
+food.style.display = "block";
+
+}else{
+
+food.style.display = "none";
+
+}
+
+});
+
+}
+
+</script>
+
 
 </body>
 
