@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>SIGNATURE - AR Menu</title>
 
@@ -137,11 +140,23 @@ color:#777;
 margin:8px 0 15px;
 }
 
+.add-button{
+width:100%;
+background:#111;
+color:white;
+border:0;
+border-radius:10px;
+padding:13px;
+font-size:15px;
+font-weight:bold;
+}
+
 model-viewer{
 width:100%;
 height:300px;
 background:#f3f3f3;
 border-radius:15px;
+margin-top:15px;
 }
 
 .ar-button{
@@ -202,7 +217,7 @@ position:absolute;
 bottom:0;
 left:0;
 right:0;
-max-height:80vh;
+max-height:90vh;
 overflow:auto;
 border-radius:20px 20px 0 0;
 padding:22px;
@@ -240,6 +255,26 @@ font-size:18px;
 font-size:21px;
 font-weight:bold;
 margin:20px 0;
+}
+
+.customer-form{
+margin-top:20px;
+}
+
+.customer-form input,
+.customer-form textarea{
+width:100%;
+padding:13px;
+margin-bottom:12px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:15px;
+font-family:Arial;
+}
+
+.customer-form textarea{
+height:80px;
+resize:none;
 }
 
 .whatsapp{
@@ -295,7 +330,8 @@ placeholder="🔍 Search food..."
 
 <div class="categories">
 
-<button class="active" onclick="filterFood('all',this)">
+<button class="active"
+onclick="filterFood('all',this)">
 All
 </button>
 
@@ -316,7 +352,9 @@ Drinks
 
 <!-- BURGER -->
 
-<div class="food" data-category="main" data-name="burger">
+<div class="food"
+data-category="main"
+data-name="burger">
 
 <div class="food-image">
 
@@ -324,7 +362,9 @@ Drinks
 src="https://i.ibb.co/213NpYQj/360-F-274990113-ff-VRByg-Lk-LCZAATF9l-Wymz-E6b-It-MVu-H1.jpg"
 alt="Burger">
 
-<span class="badge">⭐ BEST SELLER</span>
+<span class="badge">
+⭐ BEST SELLER
+</span>
 
 </div>
 
@@ -334,7 +374,9 @@ alt="Burger">
 
 <h2>🍔 Burger</h2>
 
-<span class="price">₹199</span>
+<span class="price">
+₹199
+</span>
 
 </div>
 
@@ -342,12 +384,13 @@ alt="Burger">
 Delicious crispy burger
 </p>
 
-<button class="cart-button"
+<button
+class="add-button"
 onclick="addToCart('Burger',199)">
-🛒 Add to Cart
-</button>
 
-<br><br>
+🛒 Add to Cart
+
+</button>
 
 <model-viewer
 src="https://raw.githubusercontent.com/amaan001718/Sig-resturant/main/plaggy_cc0-hamburger-530.glb"
@@ -359,8 +402,12 @@ ar-modes="webxr scene-viewer quick-look"
 ar-placement="floor"
 ar-scale="auto">
 
-<button slot="ar-button" class="ar-button">
+<button
+slot="ar-button"
+class="ar-button">
+
 📱 View Burger in AR
+
 </button>
 
 </model-viewer>
@@ -372,7 +419,9 @@ ar-scale="auto">
 
 <!-- PIZZA -->
 
-<div class="food" data-category="main" data-name="pizza">
+<div class="food"
+data-category="main"
+data-name="pizza">
 
 <div class="food-image">
 
@@ -380,7 +429,9 @@ ar-scale="auto">
 src="https://i.postimg.cc/TP7FQMfh/360-F-988111369-Px-Mp15v-F2BC4wh-Qx9K5i-Zf-Afof-CABg-AR.jpg"
 alt="Pizza">
 
-<span class="badge">🔥 POPULAR</span>
+<span class="badge">
+🔥 POPULAR
+</span>
 
 </div>
 
@@ -390,7 +441,9 @@ alt="Pizza">
 
 <h2>🍕 Pizza</h2>
 
-<span class="price">₹249</span>
+<span class="price">
+₹249
+</span>
 
 </div>
 
@@ -398,12 +451,13 @@ alt="Pizza">
 Fresh cheesy pizza
 </p>
 
-<button class="cart-button"
+<button
+class="add-button"
 onclick="addToCart('Pizza',249)">
-🛒 Add to Cart
-</button>
 
-<br><br>
+🛒 Add to Cart
+
+</button>
 
 <model-viewer
 src="https://raw.githubusercontent.com/amaan001718/Sig-resturant/main/ergoninane-food-67.glb"
@@ -415,8 +469,12 @@ ar-modes="webxr scene-viewer quick-look"
 ar-placement="floor"
 ar-scale="auto">
 
-<button slot="ar-button" class="ar-button">
+<button
+slot="ar-button"
+class="ar-button">
+
 📱 View Pizza in AR
+
 </button>
 
 </model-viewer>
@@ -428,7 +486,9 @@ ar-scale="auto">
 
 <!-- CHICKEN -->
 
-<div class="food" data-category="starter" data-name="chicken lollipop">
+<div class="food"
+data-category="starter"
+data-name="chicken lollipop">
 
 <div class="food-image">
 
@@ -436,7 +496,9 @@ ar-scale="auto">
 src="https://i.postimg.cc/QdMqmBtz/high-angle-shot-delicious-hot-spicy-dish-called-drums-heaven-table-181624-50861.jpg"
 alt="Chicken Lollipop">
 
-<span class="badge">🌶️ SPICY</span>
+<span class="badge">
+🌶️ SPICY
+</span>
 
 </div>
 
@@ -446,7 +508,9 @@ alt="Chicken Lollipop">
 
 <h2>🍗 Chicken Lollipop</h2>
 
-<span class="price">₹299</span>
+<span class="price">
+₹299
+</span>
 
 </div>
 
@@ -454,12 +518,13 @@ alt="Chicken Lollipop">
 Juicy and delicious chicken lollipop
 </p>
 
-<button class="cart-button"
+<button
+class="add-button"
 onclick="addToCart('Chicken Lollipop',299)">
-🛒 Add to Cart
-</button>
 
-<br><br>
+🛒 Add to Cart
+
+</button>
 
 <model-viewer
 src="https://raw.githubusercontent.com/amaan001718/Sig-resturant/main/quaternius_cc0-chicken-leg-820.glb"
@@ -471,8 +536,12 @@ ar-modes="webxr scene-viewer quick-look"
 ar-placement="floor"
 ar-scale="auto">
 
-<button slot="ar-button" class="ar-button">
+<button
+slot="ar-button"
+class="ar-button">
+
 📱 View Chicken in AR
+
 </button>
 
 </model-viewer>
@@ -491,14 +560,21 @@ ar-scale="auto">
 <div class="cart-inner">
 
 <div class="cart-info">
+
 🛒 <span id="cartCount">0</span> items
+
 <br>
+
 ₹<span id="cartTotal">0</span>
+
 </div>
 
-<button class="cart-button"
+<button
+class="cart-button"
 onclick="openCart()">
+
 View Cart
+
 </button>
 
 </div>
@@ -508,7 +584,9 @@ View Cart
 
 <!-- CART PANEL -->
 
-<div class="cart-panel" id="cartPanel">
+<div
+class="cart-panel"
+id="cartPanel">
 
 <div class="cart-content">
 
@@ -517,17 +595,50 @@ View Cart
 <div id="cartItems"></div>
 
 <div class="total">
+
 Total: ₹<span id="panelTotal">0</span>
+
 </div>
 
-<button class="whatsapp"
+
+<!-- CUSTOMER DETAILS -->
+
+<div class="customer-form">
+
+<h3>Customer Details</h3>
+
+<input
+id="customerName"
+type="text"
+placeholder="👤 Your Name">
+
+<input
+id="tableNumber"
+type="text"
+placeholder="🪑 Table Number">
+
+<textarea
+id="instructions"
+placeholder="📝 Special instructions (optional)">
+</textarea>
+
+</div>
+
+
+<button
+class="whatsapp"
 onclick="orderWhatsApp()">
+
 📲 Order on WhatsApp
+
 </button>
 
-<button class="close"
+<button
+class="close"
 onclick="closeCart()">
+
 Close
+
 </button>
 
 </div>
@@ -537,7 +648,8 @@ Close
 
 <footer class="footer">
 
-SIGNATURE © 2026<br>
+SIGNATURE © 2026
+<br>
 AR MENU
 
 </footer>
@@ -551,7 +663,9 @@ let cart = [];
 function addToCart(name,price){
 
 const item = cart.find(function(product){
+
 return product.name === name;
+
 });
 
 if(item){
@@ -561,16 +675,18 @@ item.quantity++;
 }else{
 
 cart.push({
+
 name:name,
+
 price:price,
+
 quantity:1
+
 });
 
 }
 
 updateCart();
-
-alert(name + " added to cart!");
 
 }
 
@@ -578,6 +694,7 @@ alert(name + " added to cart!");
 function updateCart(){
 
 let count = 0;
+
 let total = 0;
 
 cart.forEach(function(item){
@@ -588,11 +705,14 @@ total += item.price * item.quantity;
 
 });
 
-document.getElementById("cartCount").textContent = count;
+document.getElementById("cartCount")
+.textContent = count;
 
-document.getElementById("cartTotal").textContent = total;
+document.getElementById("cartTotal")
+.textContent = total;
 
-document.getElementById("panelTotal").textContent = total;
+document.getElementById("panelTotal")
+.textContent = total;
 
 renderCart();
 
@@ -601,7 +721,8 @@ renderCart();
 
 function renderCart(){
 
-const container = document.getElementById("cartItems");
+const container =
+document.getElementById("cartItems");
 
 container.innerHTML = "";
 
@@ -616,16 +737,21 @@ return;
 
 cart.forEach(function(item,index){
 
-const row = document.createElement("div");
+const row =
+document.createElement("div");
 
 row.className = "cart-item";
 
 row.innerHTML = `
 
 <div>
+
 <strong>${item.name}</strong>
+
 <br>
+
 ₹${item.price} × ${item.quantity}
+
 </div>
 
 <div class="qty">
@@ -668,16 +794,16 @@ updateCart();
 
 function openCart(){
 
-document.getElementById("cartPanel").style.display =
-"block";
+document.getElementById("cartPanel")
+.style.display = "block";
 
 }
 
 
 function closeCart(){
 
-document.getElementById("cartPanel").style.display =
-"none";
+document.getElementById("cartPanel")
+.style.display = "none";
 
 }
 
@@ -692,19 +818,70 @@ return;
 
 }
 
-let message = "Hello SIGNATURE,%0A%0AI would like to order:%0A%0A";
+const name =
+document.getElementById("customerName")
+.value.trim();
+
+const table =
+document.getElementById("tableNumber")
+.value.trim();
+
+const instructions =
+document.getElementById("instructions")
+.value.trim();
+
+
+if(!name){
+
+alert("Please enter your name.");
+
+return;
+
+}
+
+
+if(!table){
+
+alert("Please enter your table number.");
+
+return;
+
+}
+
+
+let message =
+"Hello SIGNATURE!%0A%0A";
+
+message +=
+"*NEW ORDER*%0A%0A";
+
+message +=
+"👤 Name: " +
+encodeURIComponent(name) +
+"%0A";
+
+message +=
+"🪑 Table: " +
+encodeURIComponent(table) +
+"%0A%0A";
+
+message +=
+"*ORDER:*%0A";
+
 
 let total = 0;
 
+
 cart.forEach(function(item){
 
-let itemTotal = item.price * item.quantity;
+const itemTotal =
+item.price * item.quantity;
 
 total += itemTotal;
 
 message +=
 "• " +
-item.name +
+encodeURIComponent(item.name) +
 " × " +
 item.quantity +
 " = ₹" +
@@ -713,15 +890,35 @@ itemTotal +
 
 });
 
-message +=
-"%0A*Total: ₹" +
-total +
-"*%0A%0AThank you!";
 
-const phone = "918273004101";
+message +=
+"%0A*TOTAL: ₹" +
+total +
+"*%0A";
+
+
+if(instructions){
+
+message +=
+"%0A📝 Instructions: " +
+encodeURIComponent(instructions);
+
+}
+
+
+message +=
+"%0A%0AThank you!";
+
+
+const phone =
+"918273004101";
+
 
 window.open(
-"https://wa.me/" + phone + "?text=" + message,
+"https://wa.me/" +
+phone +
+"?text=" +
+message,
 "_blank"
 );
 
@@ -732,7 +929,9 @@ const search =
 document.getElementById("search");
 
 
-search.addEventListener("input",function(){
+search.addEventListener(
+"input",
+function(){
 
 const value =
 this.value.toLowerCase();
@@ -745,11 +944,13 @@ food.dataset.name;
 
 if(name.includes(value)){
 
-food.style.display = "block";
+food.style.display =
+"block";
 
 }else{
 
-food.style.display = "none";
+food.style.display =
+"none";
 
 }
 
@@ -760,7 +961,9 @@ food.style.display = "none";
 
 function filterFood(category,button){
 
-document.querySelectorAll(".categories button")
+document.querySelectorAll(
+".categories button"
+)
 .forEach(function(btn){
 
 btn.classList.remove("active");
@@ -769,17 +972,22 @@ btn.classList.remove("active");
 
 button.classList.add("active");
 
+
 document.querySelectorAll(".food")
 .forEach(function(food){
 
-if(category === "all" ||
-food.dataset.category === category){
+if(
+category === "all" ||
+food.dataset.category === category
+){
 
-food.style.display = "block";
+food.style.display =
+"block";
 
 }else{
 
-food.style.display = "none";
+food.style.display =
+"none";
 
 }
 
