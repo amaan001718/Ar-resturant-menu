@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  const SUPABASE_URL = "https://wlvfsnlgozlmscmtpvtk.supabase.co";
 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsdmZzbmxnb3psbXNjbXRwdnRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwOTE0MDMsImV4cCI6MjEwMjY2NzQwM30.GIlVzrIsyk0Dig2UBYzKovtGgMD5gZpmIayH8HajtJo";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
 <head>
 
 <meta charset="UTF-8">
@@ -324,7 +316,7 @@ font-size:13px;
 }
 
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -680,6 +672,14 @@ AR MENU
 
 
 <script>
+  const SUPABASE_URL = "https://wlvfsnlgozlmscmtpvtk.supabase.co";
+
+const SUPABASE_KEY = "YOUR_ANON_KEY";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 let cart = [];
 
