@@ -31,7 +31,7 @@ padding-bottom:90px;
 .header{
 background:#111;
 color:white;
-padding:35px 20px;
+padding:30px 20px;
 text-align:center;
 }
 
@@ -42,8 +42,18 @@ letter-spacing:5px;
 }
 
 .header p{
-margin:10px 0 0;
+margin:10px 0;
 color:#ccc;
+font-size:14px;
+}
+
+.table-badge{
+display:inline-block;
+margin-top:8px;
+padding:8px 14px;
+border-radius:20px;
+background:#333;
+color:white;
 font-size:14px;
 }
 
@@ -311,15 +321,22 @@ font-size:13px;
 
 <body>
 
+
 <header class="header">
 
 <h1>SIGNATURE</h1>
 
 <p>EXPLORE • VIEW • EXPERIENCE</p>
 
+<div class="table-badge" id="tableBadge">
+🪑 Table not selected
+</div>
+
 </header>
 
+
 <main class="container">
+
 
 <input
 class="search"
@@ -327,6 +344,7 @@ id="search"
 type="text"
 placeholder="🔍 Search food..."
 >
+
 
 <div class="categories">
 
@@ -601,8 +619,6 @@ Total: ₹<span id="panelTotal">0</span>
 </div>
 
 
-<!-- CUSTOMER DETAILS -->
-
 <div class="customer-form">
 
 <h3>Customer Details</h3>
@@ -660,9 +676,48 @@ AR MENU
 let cart = [];
 
 
+// TABLE DETECTION
+
+const params =
+new URLSearchParams(window.location.search);
+
+const table =
+params.get("table");
+
+const tableBadge =
+document.getElementById("tableBadge");
+
+const tableInput =
+document.getElementById("tableNumber");
+
+
+if(table){
+
+const cleanTable =
+table.padStart(2,"0");
+
+tableBadge.textContent =
+"🪑 Table " + cleanTable;
+
+tableInput.value =
+"Table " + cleanTable;
+
+tableInput.readOnly = true;
+
+}else{
+
+tableBadge.textContent =
+"🪑 Table not selected";
+
+}
+
+
+// CART
+
 function addToCart(name,price){
 
-const item = cart.find(function(product){
+const item = cart.find(
+function(product){
 
 return product.name === name;
 
@@ -677,9 +732,7 @@ item.quantity++;
 cart.push({
 
 name:name,
-
 price:price,
-
 quantity:1
 
 });
@@ -694,7 +747,6 @@ updateCart();
 function updateCart(){
 
 let count = 0;
-
 let total = 0;
 
 cart.forEach(function(item){
@@ -808,6 +860,8 @@ document.getElementById("cartPanel")
 }
 
 
+// WHATSAPP
+
 function orderWhatsApp(){
 
 if(cart.length === 0){
@@ -822,7 +876,7 @@ const name =
 document.getElementById("customerName")
 .value.trim();
 
-const table =
+const tableValue =
 document.getElementById("tableNumber")
 .value.trim();
 
@@ -840,7 +894,7 @@ return;
 }
 
 
-if(!table){
+if(!tableValue){
 
 alert("Please enter your table number.");
 
@@ -862,7 +916,7 @@ encodeURIComponent(name) +
 
 message +=
 "🪑 Table: " +
-encodeURIComponent(table) +
+encodeURIComponent(tableValue) +
 "%0A%0A";
 
 message +=
@@ -925,9 +979,10 @@ message,
 }
 
 
+// SEARCH
+
 const search =
 document.getElementById("search");
-
 
 search.addEventListener(
 "input",
@@ -958,6 +1013,8 @@ food.style.display =
 
 });
 
+
+// CATEGORY FILTER
 
 function filterFood(category,button){
 
