@@ -177,8 +177,59 @@ display:none;
 
 </head>
 
-
 <body>
+ <div id="loginBox" style="
+max-width:400px;
+margin:80px auto;
+padding:25px;
+background:white;
+border-radius:16px;
+box-shadow:0 4px 20px rgba(0,0,0,.1);
+">
+
+<h2>Admin Login</h2>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="Admin email"
+style="
+width:100%;
+padding:12px;
+margin:8px 0;
+">
+
+<input
+id="adminPassword"
+type="password"
+placeholder="Password"
+style="
+width:100%;
+padding:12px;
+margin:8px 0;
+">
+
+<button
+onclick="adminLogin()"
+style="
+width:100%;
+padding:12px;
+background:#111;
+color:white;
+border:0;
+border-radius:8px;
+margin-top:10px;
+">
+
+Login
+
+</button>
+
+<p id="loginError"
+style="color:red;">
+</p>
+
+</div> 
 
 
 <header class="header">
@@ -489,3 +540,326 @@ loadOrders();
 </body>
 
 </html>
+<script>
+
+const SUPABASE_URL =
+"https://wlvfsnlgozlmscmtpvtk.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Eie3jJ8Fz8xUK3LbycqTow_6oo2cWgn";
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+// ============================
+// ADMIN LOGIN
+// ============================
+
+async function adminLogin(){
+
+  const email =
+    document.getElementById("adminEmail")
+    .value.trim();
+
+  const password =
+    document.getElementById("adminPassword")
+    .value;
+
+  const loginError =
+    document.getElementById("loginError");
+
+  loginError.textContent = "";
+
+
+  if(!email || !password){
+
+    loginError.textContent =
+      "Email and password required.";
+
+    return;
+
+  }
+
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+
+      email: email,
+
+      password: password
+
+    });
+
+
+  if(error){
+
+    console.error(error);
+
+    loginError.textContent =
+      "Login failed: " + error.message;
+
+    return;
+
+  }
+
+
+  document.getElementById("loginBox")
+    .style.display = "none";
+
+  loadOrders();
+
+}
+
+
+// ============================
+// LOAD ORDERS
+// ============================
+
+async function loadOrders(){
+
+  const container =
+    document.getElementById("orders");
+
+  const errorBox =
+    document.getElementById("errorBox");
+
+  errorBox.style.display = "none";
+
+  container.innerHTML =
+    '<div class="empty">Loading orders...</div>';
+
+
+  const { data, error } =
+    await supabaseClient
+
+      .from("Orders")
+
+      .select("*")
+
+      .order("created_at", {
+        ascending: false
+      });
+
+
+  if(error){
+
+    console.error(error);
+
+    errorBox.textContent =
+      "Error loading orders: " +
+      error.message;
+
+    errorBox.style.display = "block";
+
+    container.innerHTML = "";
+
+    return;
+
+  }
+
+
+  if(!data || data.length === 0){
+
+    container.innerHTML =
+      '<div class="empty">No orders yet.</div>';
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  data.forEach(function(order){
+
+    const card =
+      document.createElement("div");
+
+    card.className = "order";
+
+
+    let itemsHTML = "";
+
+
+    if(Array.isArray(order.items)){
+
+      order.items.forEach(function(item){
+
+        itemsHTML += `
+
+          <div class="item">
+
+            <span>
+              ${item.name} × ${item.quantity}
+            </span>
+
+            <strong>
+              ₹${item.price * item.quantity}
+            </strong>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+
+    const status =
+      order.status || "received";
+
+
+    card.innerHTML = `
+
+      <div class="order-head">
+
+        <div class="order-id">
+          Order #${order.id}
+        </div>
+
+        <div class="status ${status}">
+          ${status.toUpperCase()}
+        </div>
+
+      </div>
+
+
+      <div class="customer">
+
+        👤 <strong>
+        ${order.customer_name || "Unknown"}
+        </strong>
+
+        <br>
+
+        🪑 Table:
+        ${order.table_number || "-"}
+
+        <br>
+
+        🕐
+        ${
+          order.created_at
+          ? new Date(order.created_at)
+              .toLocaleString()
+          : "-"
+        }
+
+      </div>
+
+
+      <div class="items">
+
+        ${itemsHTML}
+
+      </div>
+
+
+      <div class="total">
+
+        Total: ₹${order.total || 0}
+
+      </div>
+
+
+      ${
+        order.instructions
+        ?
+        `<div>
+          📝 ${order.instructions}
+        </div>`
+        :
+        ""
+      }
+
+
+      <div class="actions">
+
+        <button
+          class="prepare"
+          onclick="updateStatus(
+            ${order.id},
+            'preparing'
+          )">
+
+          🔵 Preparing
+
+        </button>
+
+
+        <button
+          class="ready"
+          onclick="updateStatus(
+            ${order.id},
+            'ready'
+          )">
+
+          🟢 Ready
+
+        </button>
+
+
+        <button
+          class="cancel"
+          onclick="updateStatus(
+            ${order.id},
+            'cancelled'
+          )">
+
+          ❌ Cancel
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+// ============================
+// UPDATE ORDER STATUS
+// ============================
+
+async function updateStatus(id, status){
+
+  const { error } =
+    await supabaseClient
+
+      .from("Orders")
+
+      .update({
+        status: status
+      })
+
+      .eq("id", id);
+
+
+  if(error){
+
+    alert(
+      "Status update failed: " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  loadOrders();
+
+}
+
+</script>
