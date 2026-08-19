@@ -316,7 +316,7 @@ font-size:13px;
 }
 
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 
 <body>
@@ -672,14 +672,6 @@ AR MENU
 
 
 <script>
-  const SUPABASE_URL = "https://wlvfsnlgozlmscmtpvtk.supabase.co";
-
-const SUPABASE_KEY = "YOUR_ANON_KEY";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
 
 let cart = [];
 
@@ -861,8 +853,8 @@ document.getElementById("cartPanel")
 
 
 function closeCart(){
-        
-        document.getElementById("cartPanel")
+
+document.getElementById("cartPanel")
 .style.display = "none";
 
 }
@@ -870,108 +862,7 @@ function closeCart(){
 
 // WHATSAPP
 
-async function orderWhatsApp(){
-        async function orderWhatsApp(){
-
-if(cart.length === 0){
-
-alert("Please add food to cart first.");
-
-return;
-
-}
-
-const name =
-document.getElementById("customerName")
-.value.trim();
-
-const tableValue =
-document.getElementById("tableNumber")
-.value.trim();
-
-const instructions =
-document.getElementById("instructions")
-.value.trim();
-
-
-if(!name){
-
-alert("Please enter your name.");
-
-return;
-
-}
-
-
-if(!tableValue){
-
-alert("Please enter your table number.");
-
-return;
-
-}
-
-
-const orderData = {
-
-customer_name: name,
-
-table_number: tableValue,
-
-items: cart,
-
-total: cart.reduce(
-(sum,item) =>
-sum + (item.price * item.quantity),
-0
-),
-
-instructions: instructions,
-
-status: "received"
-
-};
-
-
-console.log("Sending order:",orderData);
-
-
-const { data,error } =
-await supabaseClient
-
-.from("Orders")
-
-.insert([orderData])
-
-.select();
-
-
-if(error){
-
-console.error(
-"Supabase error:",
-error
-);
-
-alert(
-"Database error: " +
-error.message
-);
-
-return;
-
-}
-
-
-console.log(
-"Order saved:",
-data
-);
-
-
-alert(
-"✅ Order received successfully!"
-);
+function orderWhatsApp(){
 
 if(cart.length === 0){
 
