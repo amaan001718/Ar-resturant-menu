@@ -19,9 +19,10 @@ box-sizing:border-box;
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 background:#f6f3ee;
 color:#222;
+padding-bottom:90px;
 }
 
 .header{
@@ -89,6 +90,708 @@ box-shadow:0 5px 18px rgba(0,0,0,.08);
 }
 
 .food-image{
+position:relative;
+}
+
+.food-image img{
+width:100%;
+height:230px;
+object-fit:cover;
+display:block;
+}
+
+.badge{
+position:absolute;
+top:12px;
+left:12px;
+background:#111;
+color:white;
+padding:7px 11px;
+border-radius:20px;
+font-size:12px;
+}
+
+.food-content{
+padding:18px;
+}
+
+.food-title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.food-title h2{
+margin:0;
+font-size:22px;
+}
+
+.price{
+font-size:20px;
+font-weight:bold;
+}
+
+.description{
+color:#777;
+margin:8px 0 15px;
+}
+
+model-viewer{
+width:100%;
+height:300px;
+background:#f3f3f3;
+border-radius:15px;
+}
+
+.ar-button{
+background:#111;
+color:white;
+border:0;
+border-radius:10px;
+padding:13px 18px;
+font-size:15px;
+font-weight:bold;
+}
+
+.cart-box{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:white;
+box-shadow:0 -4px 15px rgba(0,0,0,.15);
+padding:12px 18px;
+z-index:1000;
+}
+
+.cart-inner{
+max-width:600px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+}
+
+.cart-info{
+font-weight:bold;
+}
+
+.cart-button{
+background:#111;
+color:white;
+border:0;
+border-radius:10px;
+padding:12px 16px;
+font-size:15px;
+font-weight:bold;
+}
+
+.cart-panel{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:2000;
+}
+
+.cart-content{
+background:white;
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+max-height:80vh;
+overflow:auto;
+border-radius:20px 20px 0 0;
+padding:22px;
+}
+
+.cart-content h2{
+margin-top:0;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:12px 0;
+border-bottom:1px solid #eee;
+}
+
+.qty{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.qty button{
+width:32px;
+height:32px;
+border:0;
+border-radius:8px;
+background:#eee;
+font-size:18px;
+}
+
+.total{
+font-size:21px;
+font-weight:bold;
+margin:20px 0;
+}
+
+.whatsapp{
+width:100%;
+background:#25D366;
+color:white;
+border:0;
+border-radius:12px;
+padding:15px;
+font-size:17px;
+font-weight:bold;
+}
+
+.close{
+width:100%;
+margin-top:10px;
+background:#eee;
+border:0;
+border-radius:12px;
+padding:13px;
+font-size:16px;
+}
+
+.footer{
+text-align:center;
+padding:30px 10px;
+color:#777;
+font-size:13px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<h1>SIGNATURE</h1>
+
+<p>EXPLORE • VIEW • EXPERIENCE</p>
+
+</header>
+
+<main class="container">
+
+<input
+class="search"
+id="search"
+type="text"
+placeholder="🔍 Search food..."
+>
+
+<div class="categories">
+
+<button class="active" onclick="filterFood('all',this)">
+All
+</button>
+
+<button onclick="filterFood('starter',this)">
+Starters
+</button>
+
+<button onclick="filterFood('main',this)">
+Main Course
+</button>
+
+<button onclick="filterFood('drinks',this)">
+Drinks
+</button>
+
+</div>
+
+
+<!-- BURGER -->
+
+<div class="food" data-category="main" data-name="burger">
+
+<div class="food-image">
+
+<img
+src="https://i.ibb.co/213NpYQj/360-F-274990113-ff-VRByg-Lk-LCZAATF9l-Wymz-E6b-It-MVu-H1.jpg"
+alt="Burger">
+
+<span class="badge">⭐ BEST SELLER</span>
+
+</div>
+
+<div class="food-content">
+
+<div class="food-title">
+
+<h2>🍔 Burger</h2>
+
+<span class="price">₹199</span>
+
+</div>
+
+<p class="description">
+Delicious crispy burger
+</p>
+
+<button class="cart-button"
+onclick="addToCart('Burger',199)">
+🛒 Add to Cart
+</button>
+
+<br><br>
+
+<model-viewer
+src="https://raw.githubusercontent.com/amaan001718/Sig-resturant/main/plaggy_cc0-hamburger-530.glb"
+alt="3D Burger"
+camera-controls
+auto-rotate
+ar
+ar-modes="webxr scene-viewer quick-look"
+ar-placement="floor"
+ar-scale="auto">
+
+<button slot="ar-button" class="ar-button">
+📱 View Burger in AR
+</button>
+
+</model-viewer>
+
+</div>
+
+</div>
+
+
+<!-- PIZZA -->
+
+<div class="food" data-category="main" data-name="pizza">
+
+<div class="food-image">
+
+<img
+src="https://i.postimg.cc/TP7FQMfh/360-F-988111369-Px-Mp15v-F2BC4wh-Qx9K5i-Zf-Afof-CABg-AR.jpg"
+alt="Pizza">
+
+<span class="badge">🔥 POPULAR</span>
+
+</div>
+
+<div class="food-content">
+
+<div class="food-title">
+
+<h2>🍕 Pizza</h2>
+
+<span class="price">₹249</span>
+
+</div>
+
+<p class="description">
+Fresh cheesy pizza
+</p>
+
+<button class="cart-button"
+onclick="addToCart('Pizza',249)">
+🛒 Add to Cart
+</button>
+
+<br><br>
+
+<model-viewer
+src="https://raw.githubusercontent.com/amaan001718/Sig-resturant/main/ergoninane-food-67.glb"
+alt="3D Pizza"
+camera-controls
+auto-rotate
+ar
+ar-modes="webxr scene-viewer quick-look"
+ar-placement="floor"
+ar-scale="auto">
+
+<button slot="ar-button" class="ar-button">
+📱 View Pizza in AR
+</button>
+
+</model-viewer>
+
+</div>
+
+</div>
+
+
+<!-- CHICKEN -->
+
+<div class="food" data-category="starter" data-name="chicken lollipop">
+
+<div class="food-image">
+
+<img
+src="https://i.postimg.cc/QdMqmBtz/high-angle-shot-delicious-hot-spicy-dish-called-drums-heaven-table-181624-50861.jpg"
+alt="Chicken Lollipop">
+
+<span class="badge">🌶️ SPICY</span>
+
+</div>
+
+<div class="food-content">
+
+<div class="food-title">
+
+<h2>🍗 Chicken Lollipop</h2>
+
+<span class="price">₹299</span>
+
+</div>
+
+<p class="description">
+Juicy and delicious chicken lollipop
+</p>
+
+<button class="cart-button"
+onclick="addToCart('Chicken Lollipop',299)">
+🛒 Add to Cart
+</button>
+
+<br><br>
+
+<model-viewer
+src="https://raw.githubusercontent.com/amaan001718/Sig-resturant/main/quaternius_cc0-chicken-leg-820.glb"
+alt="3D Chicken Lollipop"
+camera-controls
+auto-rotate
+ar
+ar-modes="webxr scene-viewer quick-look"
+ar-placement="floor"
+ar-scale="auto">
+
+<button slot="ar-button" class="ar-button">
+📱 View Chicken in AR
+</button>
+
+</model-viewer>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- CART BAR -->
+
+<div class="cart-box">
+
+<div class="cart-inner">
+
+<div class="cart-info">
+🛒 <span id="cartCount">0</span> items
+<br>
+₹<span id="cartTotal">0</span>
+</div>
+
+<button class="cart-button"
+onclick="openCart()">
+View Cart
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CART PANEL -->
+
+<div class="cart-panel" id="cartPanel">
+
+<div class="cart-content">
+
+<h2>🛒 Your Order</h2>
+
+<div id="cartItems"></div>
+
+<div class="total">
+Total: ₹<span id="panelTotal">0</span>
+</div>
+
+<button class="whatsapp"
+onclick="orderWhatsApp()">
+📲 Order on WhatsApp
+</button>
+
+<button class="close"
+onclick="closeCart()">
+Close
+</button>
+
+</div>
+
+</div>
+
+
+<footer class="footer">
+
+SIGNATURE © 2026<br>
+AR MENU
+
+</footer>
+
+
+<script>
+
+let cart = [];
+
+
+function addToCart(name,price){
+
+const item = cart.find(function(product){
+return product.name === name;
+});
+
+if(item){
+
+item.quantity++;
+
+}else{
+
+cart.push({
+name:name,
+price:price,
+quantity:1
+});
+
+}
+
+updateCart();
+
+alert(name + " added to cart!");
+
+}
+
+
+function updateCart(){
+
+let count = 0;
+let total = 0;
+
+cart.forEach(function(item){
+
+count += item.quantity;
+
+total += item.price * item.quantity;
+
+});
+
+document.getElementById("cartCount").textContent = count;
+
+document.getElementById("cartTotal").textContent = total;
+
+document.getElementById("panelTotal").textContent = total;
+
+renderCart();
+
+}
+
+
+function renderCart(){
+
+const container = document.getElementById("cartItems");
+
+container.innerHTML = "";
+
+if(cart.length === 0){
+
+container.innerHTML =
+"<p>Your cart is empty.</p>";
+
+return;
+
+}
+
+cart.forEach(function(item,index){
+
+const row = document.createElement("div");
+
+row.className = "cart-item";
+
+row.innerHTML = `
+
+<div>
+<strong>${item.name}</strong>
+<br>
+₹${item.price} × ${item.quantity}
+</div>
+
+<div class="qty">
+
+<button onclick="changeQty(${index},-1)">
+−
+</button>
+
+<span>${item.quantity}</span>
+
+<button onclick="changeQty(${index},1)">
++
+</button>
+
+</div>
+
+`;
+
+container.appendChild(row);
+
+});
+
+}
+
+
+function changeQty(index,change){
+
+cart[index].quantity += change;
+
+if(cart[index].quantity <= 0){
+
+cart.splice(index,1);
+
+}
+
+updateCart();
+
+}
+
+
+function openCart(){
+
+document.getElementById("cartPanel").style.display =
+"block";
+
+}
+
+
+function closeCart(){
+
+document.getElementById("cartPanel").style.display =
+"none";
+
+}
+
+
+function orderWhatsApp(){
+
+if(cart.length === 0){
+
+alert("Please add food to cart first.");
+
+return;
+
+}
+
+let message = "Hello SIGNATURE,%0A%0AI would like to order:%0A%0A";
+
+let total = 0;
+
+cart.forEach(function(item){
+
+let itemTotal = item.price * item.quantity;
+
+total += itemTotal;
+
+message +=
+"• " +
+item.name +
+" × " +
+item.quantity +
+" = ₹" +
+itemTotal +
+"%0A";
+
+});
+
+message +=
+"%0A*Total: ₹" +
+total +
+"*%0A%0AThank you!";
+
+const phone = "918273004101";
+
+window.open(
+"https://wa.me/" + phone + "?text=" + message,
+"_blank"
+);
+
+}
+
+
+const search =
+document.getElementById("search");
+
+
+search.addEventListener("input",function(){
+
+const value =
+this.value.toLowerCase();
+
+document.querySelectorAll(".food")
+.forEach(function(food){
+
+const name =
+food.dataset.name;
+
+if(name.includes(value)){
+
+food.style.display = "block";
+
+}else{
+
+food.style.display = "none";
+
+}
+
+});
+
+});
+
+
+function filterFood(category,button){
+
+document.querySelectorAll(".categories button")
+.forEach(function(btn){
+
+btn.classList.remove("active");
+
+});
+
+button.classList.add("active");
+
+document.querySelectorAll(".food")
+.forEach(function(food){
+
+if(category === "all" ||
+food.dataset.category === category){
+
+food.style.display = "block";
+
+}else{
+
+food.style.display = "none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>.food-image{
 position:relative;
 }
 
